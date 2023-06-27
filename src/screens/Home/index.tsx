@@ -5,14 +5,14 @@ import { Button } from '@components/Button';
 import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListData } from 'react-native';
 import { MealSectionListItem } from '@components/MealSectionListItem';
 
-interface MealItem {
+type MealItem = {
   id: string;
   title: string;
   status: 'green' | 'red';
   time: string;
 }
 
-interface MealSection {
+type MealSection = {
   title: string;
   data: MealItem[];
 }
