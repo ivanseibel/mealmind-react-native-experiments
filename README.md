@@ -12,7 +12,7 @@ MealMind is a user-friendly mobile application designed to help users track thei
 
 ## Technology
 
-This project is built using React Native and utilizes the Expo Managed Workflow for streamlined development and deployment.
+This project is built using React Native with Typescript and utilizes the Expo Managed Workflow for streamlined development and deployment.
 
 ## Setup and Installation
 
