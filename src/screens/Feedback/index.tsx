@@ -1,7 +1,9 @@
 import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
-import { Container, Message, Title, TitleMessageContainer, Image, ButtonContainer } from './styles';
-import { Button } from '@components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+import { Button } from '@components/Button';
+
+import { Container, Message, Title, TitleMessageContainer, Image, ButtonContainer } from './styles';
 
 type RouteParams = {
   variant: 'positive' | 'negative';
