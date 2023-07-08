@@ -1,15 +1,19 @@
-import { Header } from '@components/Header';
-import { Container, MealsContainer, SectionHeaderTitle, Subtitle } from './styles';
-import { StatisticHighlight } from '@components/StatisticHighlight';
-import { Button } from '@components/Button';
-import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListData, Touchable, TouchableOpacity, Alert } from 'react-native';
-import { MealSectionListItem } from '@components/MealSectionListItem';
+import { useCallback, useMemo, useState } from 'react';
+import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListData, TouchableOpacity, Alert } from 'react-native';
 import { ParamListBase, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import { Meal } from '@storage/MealStorageDTO';
-import { useCallback, useMemo, useState } from 'react';
 import { listMeals } from '@storage/ListMeals';
+
+import { Button } from '@components/Button';
+import { StatisticHighlight } from '@components/StatisticHighlight';
+import { MealSectionListItem } from '@components/MealSectionListItem';
+import { Header } from '@components/Header';
+
 import { AppError } from '@utils/AppError';
+
+import { Container, MealsContainer, SectionHeaderTitle, Subtitle } from './styles';
 
 export function Home() {
   const [isLoading, setIsLoading] = useState(false);
