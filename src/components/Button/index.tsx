@@ -1,6 +1,7 @@
-import { TouchableOpacityProps } from "react-native";
-import { Container, Label, PencilIcon, PlusIcon, TrashIcon } from "./styles";
 import { useState } from "react";
+import { TouchableOpacityProps } from "react-native";
+
+import { Container, Label, PencilIcon, PlusIcon, TrashIcon } from "./styles";
 
 type Props = TouchableOpacityProps & {
   label: string;
