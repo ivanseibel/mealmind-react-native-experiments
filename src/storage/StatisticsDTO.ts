@@ -4,4 +4,5 @@ export type Statistics = {
   totalMeals: number;
   percentageHealthyMeals: number;
   generalStatus: 'positive' | 'negative';
+  bestSequence: number;
 }
