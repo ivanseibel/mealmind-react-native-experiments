@@ -1,12 +1,14 @@
 import React from 'react';
-import { Alert, Modal, View } from 'react-native';
-import { ButtonContainer, ModalContainer, ModalContent, Title } from './styles';
-import { Button } from '@components/Button';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { deleteMeal } from '@storage/DeleteMeal';
-import { AppError } from '@utils/AppError';
+import { Alert, Modal } from 'react-native';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+import { Button } from '@components/Button';
+
+import { AppError } from '@utils/AppError';
+import { deleteMeal } from '@storage/DeleteMeal';
+
+import { ButtonContainer, ModalContainer, ModalContent, Title } from './styles';
 
 type CustomModalProps = {
   id: string;
