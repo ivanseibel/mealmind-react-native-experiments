@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { format } from 'date-fns';
-import { Input } from '@components/Input';
-import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { Text, Modal, Platform, Pressable, View, TouchableHighlight, StyleSheet } from 'react-native';
+import { format } from 'date-fns';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+
+import { Input } from '@components/Input';
 
 type DateTimeInputProps = {
   onChange: (date: Date) => void;
