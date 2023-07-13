@@ -1,7 +1,8 @@
-import { ParamListBase, useNavigation } from "@react-navigation/native";
-import { Avatar, Container, LogoContainer, LogoIcon, LogoName } from "./styles";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { TouchableOpacity } from "react-native";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { Avatar, Container, LogoContainer, LogoIcon, LogoName } from "./styles";
 
 export function Header() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
