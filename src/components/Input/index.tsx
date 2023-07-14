@@ -1,4 +1,4 @@
-import { Keyboard, Platform, ScrollView, TextInput, TextInputProps, TouchableWithoutFeedback, View } from "react-native";
+import { TextInput, TextInputProps } from "react-native";
 import { Container } from "./styles";
 
 type Props = TextInputProps & {
