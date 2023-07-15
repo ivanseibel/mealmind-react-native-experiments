@@ -1,8 +1,10 @@
 import { ThemeProvider } from 'styled-components'
 import { StatusBar } from 'react-native';
-import { Loading } from '@components/Loading';
-import defaultTheme from './src/theme'
 import { useFonts } from 'expo-font'
+
+import { Loading } from '@components/Loading';
+
+import defaultTheme from './src/theme'
 import { Routes } from '@routes/index';
 
 export default function App() {
