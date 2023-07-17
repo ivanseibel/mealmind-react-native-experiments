@@ -1,4 +1,5 @@
 import { Meal } from "@storage/MealStorageDTO";
+
 import { Container, Divider, MealStatus, MealTime, MealName } from "./styles";
 
 export function MealSectionListItem({ id, time, date, name, status }: Meal) {
