@@ -1,6 +1,8 @@
 import { TouchableOpacityProps } from "react-native";
-import { Container, HighLightIcon, Percentage, Subtitle } from "./styles";
+
 import { Loading } from "@components/Loading";
+
+import { Container, HighLightIcon, Percentage, Subtitle } from "./styles";
 
 type StatisticHighlightProps = TouchableOpacityProps & {
   percentage: number;
