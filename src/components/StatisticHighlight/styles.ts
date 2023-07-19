@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components/native";
-import { ArrowUpRight, ArrowArcLeft, ArrowDownLeft, ArrowLeft } from 'phosphor-react-native';
+import { ArrowUpRight } from 'phosphor-react-native';
 
 export type Props = {
   variant: 'positive' | 'negative' | 'positiveBack' | 'negativeBack';
