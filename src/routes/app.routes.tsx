@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import { Feedback } from "@screens/Feedback";
 import { HomeScreen } from "@screens/Home";
 import { MealDetailsScreen } from "@screens/MealDetails";
