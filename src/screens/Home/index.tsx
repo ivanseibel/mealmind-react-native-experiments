@@ -5,19 +5,17 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Meal } from '@storage/MealStorageDTO';
 import { listMeals } from '@storage/ListMeals';
+import { Statistics } from '@storage/StatisticsDTO';
+import { getStatistics } from '@storage/GetStatistics';
+import { DEFAULT_STATISTICS } from '@utils/defaults';
+import { AppError } from '@utils/AppError';
 
 import { Button } from '@components/Button';
 import { StatisticHighlight } from '@components/StatisticHighlight';
 import { MealSectionListItem } from '@components/MealSectionListItem';
 import { Header } from '@components/Header';
 
-import { AppError } from '@utils/AppError';
-
 import { Container, MealsContainer, SectionHeaderTitle, Subtitle } from './styles';
-import { Statistics } from '@storage/StatisticsDTO';
-import { getStatistics } from '@storage/GetStatistics';
-import { set } from 'date-fns';
-import { DEFAULT_STATISTICS } from '@utils/defaults';
 
 export function HomeScreen() {
   const [isLoadingMeals, setIsLoadingMeals] = useState(false);
