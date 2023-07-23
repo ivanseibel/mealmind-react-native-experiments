@@ -2,7 +2,6 @@ import { View } from 'react-native';
 import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useMemo, useState } from 'react';
-import { format } from 'date-fns';
 
 import { Button } from '@components/Button';
 import { DeleteMealDialog } from '@components/DeleteMealDialog';
