@@ -1,6 +1,6 @@
 import { ArrowLeft } from 'phosphor-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import styled, { css } from 'styled-components/native';
+import styled from 'styled-components/native';
 
 type ContainerProps = {
   variant?: 'positive' | 'negative';
