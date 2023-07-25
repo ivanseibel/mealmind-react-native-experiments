@@ -1,19 +1,22 @@
-import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
-import { HeaderBackContainer, BackIcon, Body, FullWidhtInputContainer, HalfWidhtInputContainer, Header, HeaderContent, Main, Title, YesNoIndicator, YesNoSelectorContainer, YesNoText } from './styles';
-import { Input } from '@components/Input';
-import { InputLabel } from '@components/InputLabel';
-import { Alert, View } from 'react-native';
-import { Button } from '@components/Button';
 import React, { useEffect, useState } from 'react';
-import { DateTimeInput } from '@components/DateTimeInput';
+import { Alert, View } from 'react-native';
+import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { format } from 'date-fns';
+
+import { InputLabel } from '@components/InputLabel';
+import { Input } from '@components/Input';
+import { Button } from '@components/Button';
+import { DateTimeInput } from '@components/DateTimeInput';
+import { DismissKeyboardView } from '@components/DismissKeyboardView';
+
 import { addMeal } from '@storage/AddMeal';
 import { AppError } from '@utils/AppError';
-import { format } from 'date-fns';
-import { DismissKeyboardView } from '@components/DismissKeyboardView';
 import { editMeal } from '@storage/EditMeal';
 import { Meal } from '@storage/MealStorageDTO';
 import { createTimeDate } from '@utils/dateTimeUtils';
+
+import { HeaderBackContainer, BackIcon, Body, FullWidhtInputContainer, HalfWidhtInputContainer, Header, HeaderContent, Main, Title, YesNoIndicator, YesNoSelectorContainer, YesNoText } from './styles';
 
 type RouteParams = {
   operation: 'create' | 'edit';
