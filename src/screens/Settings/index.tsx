@@ -1,15 +1,18 @@
-import { Button } from "@components/Button";
-import { Input } from "@components/Input";
-import { InputLabel } from "@components/InputLabel";
 import { useCallback, useState } from "react";
-import { BackIcon, Body, ButtonContainer, FormContainer, Header, HeaderBackContainer, HeaderContent, Main, Title } from "./styles";
 import { ParamListBase, useFocusEffect, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { saveSettings } from "@storage/SaveSettings";
-import { AppError } from "@utils/AppError";
 import { Alert } from "react-native";
-import { getSettings } from "@storage/GetSettings";
+
 import { DismissKeyboardView } from "@components/DismissKeyboardView";
+import { InputLabel } from "@components/InputLabel";
+import { Button } from "@components/Button";
+import { Input } from "@components/Input";
+
+import { getSettings } from "@storage/GetSettings";
+import { AppError } from "@utils/AppError";
+import { saveSettings } from "@storage/SaveSettings";
+
+import { BackIcon, Body, ButtonContainer, FormContainer, Header, HeaderBackContainer, HeaderContent, Main, Title } from "./styles";
 
 const DEFAULT_PERCENTAGE = '90';
 
