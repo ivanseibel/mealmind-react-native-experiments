@@ -1,13 +1,27 @@
+import { useCallback, useState } from 'react';
 import { Alert, View } from 'react-native';
-import { Container, StatisticsContainer, Title, DataContainer, DataItemContainer, DataItemValue, DataItemDescription, BackContainer, BackIcon, Header } from './styles';
-import { StatisticHighlight } from '@components/StatisticHighlight';
 import { ParamListBase, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { DEFAULT_STATISTICS } from '@utils/defaults';
-import { useCallback, useState } from 'react';
+
+import { StatisticHighlight } from '@components/StatisticHighlight';
+
 import { Statistics } from '@storage/StatisticsDTO';
 import { getStatistics } from '@storage/GetStatistics';
+import { DEFAULT_STATISTICS } from '@utils/defaults';
 import { AppError } from '@utils/AppError';
+
+import { 
+  Container, 
+  StatisticsContainer, 
+  Title, 
+  DataContainer, 
+  DataItemContainer, 
+  DataItemValue, 
+  DataItemDescription, 
+  BackContainer, 
+  BackIcon, 
+  Header 
+} from './styles';
 
 export function StatisticsScreen() {
   const [isLoadingStatistics, setIsLoadingStatistics] = useState(false);
