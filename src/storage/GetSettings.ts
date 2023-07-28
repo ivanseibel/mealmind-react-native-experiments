@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SETTINGS_COLLECTION } from "./config";
-import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 
 export async function getSettings() {
