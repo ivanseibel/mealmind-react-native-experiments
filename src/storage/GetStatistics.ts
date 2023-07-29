@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MEALS_COLLECTION, SETTINGS_COLLECTION } from "./config";
+import { SETTINGS_COLLECTION } from "./config";
 import { Meal } from "./MealStorageDTO";
-import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 import { Statistics } from "./StatisticsDTO";
 import { DEFAULT_SETTINGS, DEFAULT_STATISTICS } from "@utils/defaults";
