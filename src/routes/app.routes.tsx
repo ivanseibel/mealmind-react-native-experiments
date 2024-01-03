@@ -10,7 +10,7 @@ export function AppRoutes() {
         headerShown: false
       }}
     >
-      <Screen name="Groups" component={Home} />
+      <Screen name="Home" component={Home} />
     </Navigator>
   );
 }
