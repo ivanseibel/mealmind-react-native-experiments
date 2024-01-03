@@ -10,7 +10,7 @@ export function Routes() {
     <View
       style={{
         flex: 1,
-        backgroundColor: COLORS.GRAY_6,
+        backgroundColor: COLORS.WHITE,
       }}
     >
       <NavigationContainer>
