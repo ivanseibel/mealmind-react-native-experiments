@@ -4,6 +4,7 @@ import { Loading } from '@components/Loading';
 import defaultTheme from './src/theme'
 import { useFonts } from 'expo-font'
 import { Routes } from '@routes/index';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,7 +19,13 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      { !fontsLoaded ? <Loading /> : <Routes />}
+      { !fontsLoaded 
+        ? <Loading /> 
+        : (
+          <SafeAreaView style={{ flex: 1 }}>
+            <Routes />
+          </SafeAreaView>
+        )}
     </ThemeProvider>
   )
 }
