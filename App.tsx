@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Loading } from '@components/Loading';
 import defaultTheme from './src/theme'
 import { useFonts } from 'expo-font'
+import { Routes } from '@routes/index';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,11 +18,7 @@ export default function App() {
         backgroundColor='transparent'
         translucent
       />
-      { !fontsLoaded ? <Loading /> : (
-        <View style={styles.container}>
-          <Text style={styles.text}>Open up App.tsx to start working on your app!</Text>
-        </View>
-      )}
+      { !fontsLoaded ? <Loading /> : <Routes />}
     </ThemeProvider>
   )
 }
