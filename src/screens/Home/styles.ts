@@ -2,9 +2,9 @@ import stiled from 'styled-components/native';
 
 export const Container = stiled.View`
   flex: 1;
-  justify-content: center;
   align-items: center;
   background-color: #fff;
+  padding: 0 24px;
 `;
 
 export const Title = stiled.Text`
