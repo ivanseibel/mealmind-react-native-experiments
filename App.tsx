@@ -22,7 +22,7 @@ export default function App() {
       { !fontsLoaded 
         ? <Loading /> 
         : (
-          <SafeAreaView style={{ flex: 1 }}>
+          <SafeAreaView style={{ flex: 1, paddingTop: 20 }}>
             <Routes />
           </SafeAreaView>
         )}
