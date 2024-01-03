@@ -22,18 +22,3 @@ export default function App() {
     </ThemeProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 60,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontFamily: 'NunitoSans-Bold',
-    fontSize: 16,
-    color: '#000',
-  }
-});
