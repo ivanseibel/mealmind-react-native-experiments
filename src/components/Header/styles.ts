@@ -4,6 +4,7 @@ export const Container = styled.View`
   align-items: center;
   width: 100%;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const LogoContainer = styled.View`
@@ -21,4 +22,13 @@ export const LogoIcon = styled.Image`
 export const LogoName = styled.Image`
   width: 36px;
   height: 31px;
+`;
+
+export const Avatar = styled.Image.attrs({
+  resizeMode: "cover",
+})`
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 2px solid ${({ theme }) => theme.COLORS.GRAY_2};
 `;

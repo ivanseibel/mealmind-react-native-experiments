@@ -1,5 +1,4 @@
-import { Text, View } from "react-native";
-import { Container, LogoContainer, LogoIcon, LogoName } from "./styles";
+import { Avatar, Container, LogoContainer, LogoIcon, LogoName } from "./styles";
 
 export function Header() {
   return (
@@ -12,6 +11,10 @@ export function Header() {
           source={require('@assets/logo.png')}
         />
       </LogoContainer>
+      <Avatar 
+        source={{uri: 'https://avatars.githubusercontent.com/u/42596775?v=4'}}
+
+      />
     </Container>
   )
 }
