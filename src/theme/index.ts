@@ -19,7 +19,7 @@ export default {
   },  
   FONT_FAMILY: {
     REGULAR: 'NunitoSans-Regular',
-    BOLD: 'NunitoSans-Regular'
+    BOLD: 'NunitoSans-Bold',
   },
   FONT_SIZE: {
     XS: 12,
