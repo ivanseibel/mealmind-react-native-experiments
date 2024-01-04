@@ -30,5 +30,6 @@ export const Avatar = styled.Image.attrs({
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  border: 2px solid ${({ theme }) => theme.COLORS.GRAY_2};
+  border-width: 2px;
+  border-color: ${({ theme }) => theme.COLORS.GRAY_2};
 `;
