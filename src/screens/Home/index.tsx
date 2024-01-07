@@ -1,6 +1,7 @@
 import { Header } from '@components/Header';
-import { Container, Title } from './styles';
+import { Container, MealsContainer, NewContainer, Subtitle } from './styles';
 import { StatisticHighlight } from '@components/StatisticHighlight';
+import { Button } from '@components/Button';
 
 export function Home() {
   return (
@@ -11,7 +12,17 @@ export function Home() {
         variant="positive"
         style={{ marginTop: 36 }}
       />
-      <Title>Home</Title>
+      <MealsContainer>
+        <NewContainer>
+          <Subtitle>Meals</Subtitle>
+          <Button
+            label='Add meal'
+            onClick={() => {}}
+            variant='primary'
+            icon='plus'
+          />
+        </NewContainer>
+      </MealsContainer>
     </Container>
   )
 }
