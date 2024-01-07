@@ -1,7 +1,7 @@
-import { ViewProps } from "react-native";
+import { TouchableOpacityProps } from "react-native";
 import { Container, Icon, Percentage, Subtitle } from "./styles";
 
-type StatisticHighlightProps = ViewProps & {
+type StatisticHighlightProps = TouchableOpacityProps & {
   percentage: number;
   variant: 'positive' | 'negative';
 }
@@ -10,6 +10,7 @@ export function StatisticHighlight({ percentage, variant, ...rest }: StatisticHi
   return (
     <Container
       variant={variant}
+      activeOpacity={0.8}
       {...rest}
     >
       <Icon
