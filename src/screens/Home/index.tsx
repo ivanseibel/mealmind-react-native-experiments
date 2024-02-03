@@ -4,6 +4,7 @@ import { StatisticHighlight } from '@components/StatisticHighlight';
 import { Button } from '@components/Button';
 import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListData } from 'react-native';
 import { MealSectionListItem } from '@components/MealSectionListItem';
+import { useNavigation } from '@react-navigation/native';
 
 type MealItem = {
   id: string;
@@ -80,6 +81,8 @@ const MEALS: MealSection[] = [
 
 
 export function Home() {
+  const navigation = useNavigation();
+
   function renderMealItem({ item }: SectionListRenderItemInfo<MealItem>) {
     return (
       <MealSectionListItem 
@@ -97,13 +100,18 @@ export function Home() {
     )
   }
 
+  function handleOpenStatistics() {
+    navigation.navigate('Statistics');
+  }
+
   return (
       <Container>
         <Header />
         <StatisticHighlight 
           percentage={90.86}
-          variant="positive"
+          variant="negative"
           style={{ marginTop: 36 }}
+          onPress={handleOpenStatistics}
         />
         <MealsContainer>
           <NewContainer>
