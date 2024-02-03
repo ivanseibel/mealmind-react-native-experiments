@@ -1,23 +1,23 @@
 import styled, { css } from "styled-components/native";
-import { ArrowUpRight } from 'phosphor-react-native';
+import { ArrowUpRight, ArrowArcLeft, ArrowDownLeft, ArrowLeft } from 'phosphor-react-native';
 
 export type Props = {
-  variant: 'positive' | 'negative';
+  variant: 'positive' | 'negative' | 'positiveBack' | 'negativeBack';
 }
 
 export const Container = styled.TouchableOpacity<Props>`
   width: 100%;
-  padding: 20px 16px;
-  background-color: ${({ theme, variant }) => variant === 'positive' ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
+  padding: ${({ variant }) => !variant.includes('Back') ? '20px 16px' : '0'};
+  background-color: ${({ theme, variant }) => variant.includes('positive') ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   gap: 2px;
   border-radius: 8px;
   position: relative;
 `;
 
-export const Icon = styled(ArrowUpRight).attrs<Props>(({ theme, variant }) => ({
+export const HighLightIcon = styled(ArrowUpRight).attrs<Props>(({ theme, variant }) => ({
   color: variant === 'positive' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
   size: 32,
 }))`
@@ -47,4 +47,16 @@ export const Subtitle = styled.Text`
   line-height: 18.2px;
   align-self: stretch;
   text-align: center;
+`;
+
+export const BackContainer = styled.TouchableOpacity`
+  width: 100%;
+  align-items: flex-start;
+  border-radius: 8px;
+`;
+
+export const BackIcon = styled(ArrowLeft).attrs<Props>(({ theme, variant }) => ({
+  color: variant === 'positiveBack' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
+  size: 24,
+}))`
 `;
