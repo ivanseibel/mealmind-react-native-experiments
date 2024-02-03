@@ -20,7 +20,7 @@ export const MealTime = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_1};
     font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.SM}px;
+    font-size: ${theme.FONT_SIZE.XS}px;
     line-height: 15.6px;
   `}
 `;
@@ -52,6 +52,5 @@ export const MealStatus = styled.View<MealStatusProps>`
   `}
   height: 14px;
   width: 14px;
-  padding: 2px 8px;
   border-radius: 7px;
 `;
