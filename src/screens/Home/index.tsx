@@ -104,6 +104,10 @@ export function Home() {
     navigation.navigate('Statistics');
   }
 
+  function handleOpenMealForm() {
+    navigation.navigate('MealForm', { operation: 'edit' });
+  }
+
   return (
       <Container>
         <Header />
@@ -118,7 +122,7 @@ export function Home() {
             <Subtitle>Meals</Subtitle>
             <Button
               label='Add meal'
-              onClick={() => {}}
+              onClick={handleOpenMealForm}
               variant='primary'
               icon='plus'
             />
