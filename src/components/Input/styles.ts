@@ -12,10 +12,9 @@ export const Container = styled(TextInput).attrs(({ theme }) => ({
     color: ${theme.COLORS.GRAY_1};
   `}
 
-  flex: 1;
   width: 100%;
-  min-height: 48px;
-  max-height: 48px;
+  min-height: ${({ multiline }) => multiline ? 120 : 48}px;
+  max-height: ${({ multiline }) => multiline ? 240 : 48}px;
   padding: 14px;
   border-radius: 8px;
 `;
