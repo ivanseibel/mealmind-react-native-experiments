@@ -4,7 +4,9 @@ export declare global {
       Home: undefined;
       Statistics: undefined;
       MealDetails: undefined;
-      MealForm: undefined;
+      MealForm: {
+        operation: 'create' | 'edit';
+      };
       Feedback: undefined;
     }
   }

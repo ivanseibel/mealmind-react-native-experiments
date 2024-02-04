@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { StatisticsHeaderContainer, StatisticsContainer, Title, DataContainer, DataItemContainer, DataItemValue, DataItemDescription } from './styles';
 import { StatisticHighlight } from '@components/StatisticHighlight';
 
