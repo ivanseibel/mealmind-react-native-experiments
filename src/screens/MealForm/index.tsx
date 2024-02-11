@@ -6,7 +6,7 @@ import { Platform, View, Text } from 'react-native';
 import { Button } from '@components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
-import DateTimePicker, { DateTimePickerEvent, Event } from '@react-native-community/datetimepicker';
+import { DateTimeInput } from '@components/DateTimeInput';
 
 type RouteParams = {
   operation: 'create' | 'edit';
@@ -14,18 +14,8 @@ type RouteParams = {
 
 export function MealForm() {
   const [withinDiet, setWithinDiet] = useState<true | false | undefined>(undefined);
-  const [date, setDate] = useState<Date>(new Date());
-  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
-
-  const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
-
-  const showDatepicker = () => {
-    setShowDatePicker(true);
-  };
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
 
   const navigation = useNavigation();
 
@@ -78,33 +68,19 @@ export function MealForm() {
             <InputLabel 
               title='Date'
             />
-            {/* <Input 
-            /> */}
-            <View>
-              <View>
-                <Button onClick={showDatepicker} label="Show date picker!" />
-              </View>
-              {showDatePicker && (
-                <DateTimePicker
-                  testID="dateTimePicker"
-                  value={date}
-                  mode="date"
-                  display="default"
-                  onChange={onChange}
-                  maximumDate={new Date(2300, 10, 20)}
-                  minimumDate={new Date(1950, 0, 1)}
-                  neutralButtonLabel="clear"
-                />
-              )}
-              {/* Display the selected date */}
-              <Text>Selected Date: {date.toLocaleDateString()}</Text>
-            </View>
+            <DateTimeInput
+              value={date}
+              onChange={setDate}
+            />
           </HalfWidhtInputContainer>
           <HalfWidhtInputContainer>
             <InputLabel 
               title='Time'
             />
-            <Input 
+            <DateTimeInput 
+              onChange={setTime}
+              mode='time'
+              value={time}
             />
           </HalfWidhtInputContainer>
         </View>
@@ -147,6 +123,7 @@ export function MealForm() {
           flex: 1,
           justifyContent: 'flex-end',
           width: '100%',
+          paddingBottom: 20,
         }}>
           <Button 
             label='Record meal'
