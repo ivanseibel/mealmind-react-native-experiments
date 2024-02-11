@@ -68,26 +68,20 @@ export function MealForm() {
             <InputLabel 
               title='Date'
             />
-            {/* <Input 
-            /> */}
             <DateTimeInput
               value={date}
               onChange={setDate}
             />
-            <Text>{date.toDateString()}</Text>
           </HalfWidhtInputContainer>
           <HalfWidhtInputContainer>
             <InputLabel 
               title='Time'
             />
-            {/* <Input 
-            /> */}
             <DateTimeInput 
               onChange={setTime}
               mode='time'
               value={time}
             />
-            <Text>{time.toTimeString()}</Text>
           </HalfWidhtInputContainer>
         </View>
 
