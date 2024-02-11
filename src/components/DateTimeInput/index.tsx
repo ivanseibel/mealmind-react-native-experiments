@@ -1,7 +1,8 @@
+import { useState } from 'react';
+import { format } from 'date-fns';
 import { Input } from '@components/Input';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import { useState } from 'react';
-import { Text, Modal, Platform, Pressable, TouchableOpacity, View, TouchableHighlight, StyleSheet } from 'react-native';
+import { Text, Modal, Platform, Pressable, View, TouchableHighlight, StyleSheet } from 'react-native';
 
 type DateTimeInputProps = {
   onChange: (date: Date) => void;
@@ -55,7 +56,7 @@ export function DateTimeInput({ onChange, mode = 'date', value = new Date() }: D
       onPress={() => setShow(true)}
     >
       <Input 
-        value={value.toLocaleDateString()}
+        value={mode === 'date' ? format(value, 'EEE, dd MMM yyyy'): format(value, 'HH:mm')}
         editable={false}
         onPressIn={() => setShow(true)}
       />
