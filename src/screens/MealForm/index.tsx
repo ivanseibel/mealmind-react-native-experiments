@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
 import { BackContainer, BackIcon, Container, FullWidhtInputContainer, HalfWidhtInputContainer, HeaderContainer, Title, YesNoIndicator, YesNoSelectorContainer, YesNoText } from './styles';
 import { Input } from '@components/Input';
 import { InputLabel } from '@components/InputLabel';
@@ -7,6 +7,7 @@ import { Button } from '@components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { DateTimeInput } from '@components/DateTimeInput';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type RouteParams = {
   operation: 'create' | 'edit';
@@ -17,13 +18,19 @@ export function MealForm() {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const route = useRoute();
   const { operation } = route.params as RouteParams;
 
   function handleGoBack() {
     navigation.goBack();
+  }
+
+  function handleRecordMeal() {
+    navigation.navigate('Feedback', {
+      variant: 'positive'
+    });
   }
 
   return (
@@ -128,7 +135,7 @@ export function MealForm() {
           <Button 
             label='Record meal'
             variant='primary'
-            onClick={() => {}}
+            onClick={handleRecordMeal}
           />
         </SafeAreaView>
 

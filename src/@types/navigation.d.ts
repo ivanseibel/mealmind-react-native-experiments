@@ -7,7 +7,9 @@ export declare global {
       MealForm: {
         operation: 'create' | 'edit';
       };
-      Feedback: undefined;
+      Feedback: {
+        variant?: 'positive' | 'negative';
+      };
     }
   }
 }

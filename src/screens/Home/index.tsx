@@ -4,7 +4,8 @@ import { StatisticHighlight } from '@components/StatisticHighlight';
 import { Button } from '@components/Button';
 import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListData } from 'react-native';
 import { MealSectionListItem } from '@components/MealSectionListItem';
-import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type MealItem = {
   id: string;
@@ -79,9 +80,8 @@ const MEALS: MealSection[] = [
   },
 ]
 
-
 export function Home() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   function renderMealItem({ item }: SectionListRenderItemInfo<MealItem>) {
     return (
@@ -93,7 +93,6 @@ export function Home() {
       />
     )
   }
-
   function renderMealSection(section: SectionListData<MealItem, DefaultSectionT>) {
     return (
       <SectionHeaderTitle>{section.title}</SectionHeaderTitle>
