@@ -20,8 +20,8 @@ const MEALS: MealSection[] = [
       {
         id: '1',
         title: 'Breakfast',
-        time: new Date('2021-09-21 08:00'),
-        date: new Date('2021-09-21'), 
+        time: '2021-09-21 08:00',
+        date: '2021-09-21',
         status: 'red',
         description: 'Toast, eggs, and coffee'
       },
@@ -29,24 +29,24 @@ const MEALS: MealSection[] = [
         id: '2',
         title: 'Lunch',
         status: 'green',
-        time: new Date('2021-09-21 12:00'),
-        date: new Date('2021-09-21'),
+        time: '2021-09-21 12:00',
+        date: '2021-09-21',
         description: 'Rice, beans, and chicken'
       },
       {
         id: '3',
         title: 'Dinner',
         status: 'red',
-        time: new Date('2021-09-21 18:00'),
-        date: new Date('2021-09-21'),
+        time: '2021-09-21 18:00',
+        date: '2021-09-21',
         description: 'Pasta, tomato sauce, and cheese'
       },
       {
         id: '4',
         title: 'Snack Supper Breakfast Lunch Dinner',
         status: 'green',
-        time: new Date('2021-09-21 20:00'),
-        date: new Date('2021-09-21'),
+        time: '2021-09-21 20:00',
+        date: '2021-09-21',
         description: 'Yogurt, granola, and honey'
       },
     ]
@@ -57,8 +57,8 @@ const MEALS: MealSection[] = [
       {
         id: '1',
         title: 'Breakfast',
-        time: new Date('2021-09-20 08:00'),
-        date: new Date('2021-09-20'),
+        time: '2021-09-20 08:00',
+        date: '2021-09-20',
         status: 'red',
         description: 'Avocado toast and coffee'
       },
@@ -66,24 +66,24 @@ const MEALS: MealSection[] = [
         id: '2',
         title: 'Lunch',
         status: 'green',
-        time: new Date('2021-09-20 12:00'),
-        date: new Date('2021-09-20'),
+        time: '2021-09-20 12:00',
+        date: '2021-09-20',
         description: 'Stake, potatoes, and salad'
       },
       {
         id: '3',
         title: 'Dinner',
         status: 'red',
-        time: new Date('2021-09-20 18:00'),
-        date: new Date('2021-09-20'),
+        time: '2021-09-20 18:00',
+        date: '2021-09-20',
         description: 'Pizza and soda'
       },
       {
         id: '4',
         title: 'Snack Supper Breakfast Lunch Dinner',
         status: 'green',
-        time: new Date('2021-09-20 20:00'),
-        date: new Date('2021-09-20'),
+        time: '2021-09-20 20:00',
+        date: '2021-09-20',
         description: 'Fruit salad and yogurt'
       },
     ]
