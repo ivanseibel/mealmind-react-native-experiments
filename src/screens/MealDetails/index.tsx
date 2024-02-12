@@ -1,17 +1,20 @@
 import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
-import { BackContainer, BackIcon, Container, HeaderContentContainer, Title, RowContainer, MealTitle, MealDescription, DateTimeTitle } from './styles';
+import { HeaderBackContainer, BackIcon, Body, HeaderContent, Title, RowContainer, MealTitle, MealDescription, DateTimeTitle, Main, Header } from './styles';
 import { Button } from '@components/Button';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MealItem } from 'src/@types/global';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { format } from 'date-fns';
+import { DeleteMealDialog } from '@components/DeleteMealDialog';
+import { View } from 'react-native';
 
 type RouteParams = {
   meal: MealItem;
 }
 
 export function MealDetails() {
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const route = useRoute();
@@ -28,9 +31,7 @@ export function MealDetails() {
   }
 
   function handleDeleteMeal() {
-    navigation.navigate('Feedback', {
-      variant: 'positive'
-    });
+    setShowDeleteDialog(true);
   }
 
   const variant = useMemo(() => {
@@ -39,61 +40,68 @@ export function MealDetails() {
 
   return (
     <>
-      <Container
-        type='header'
+      {showDeleteDialog && (
+        <DeleteMealDialog 
+          isVisible={showDeleteDialog}
+          onClose={() => setShowDeleteDialog(false)}
+        />
+      )}
+      <Main
         variant={variant}
       >
-        <HeaderContentContainer>
-          <BackContainer
-            onPress={handleGoBack}
-          >
-            <BackIcon />
-          </BackContainer>
-          <Title>Meal</Title>
-        </HeaderContentContainer>
-      </Container>
-      <Container
-        type='body'
-      >
-        <RowContainer>
-          <MealTitle>
-            {meal?.title}
-          </MealTitle>
-          <MealDescription>
-            {meal?.description}
-          </MealDescription>
-        </RowContainer>
+        <Header
+          variant={variant}
+        >
+          <HeaderContent>
+            <HeaderBackContainer
+              onPress={handleGoBack}
+            >
+              <BackIcon />
+            </HeaderBackContainer>
+            <Title>Meal</Title>
+          </HeaderContent>
+        </Header>
+        <Body>
+          <RowContainer>
+            <MealTitle>
+              {meal?.title}
+            </MealTitle>
+            <MealDescription>
+              {meal?.description}
+            </MealDescription>
+          </RowContainer>
 
-        <RowContainer>
-          <DateTimeTitle>
-            Date & Time
-          </DateTimeTitle>
-          <MealDescription>
-            {`${format(meal?.date, 'dd/MM/yyyy')} at ${format(meal?.time, 'HH:mm')}`}
-          </MealDescription>
-        </RowContainer>
-        <SafeAreaView style={{
-          flex: 1,
-          justifyContent: 'flex-end',
-          width: '100%',
-          paddingBottom: 20,
-          gap: 8
-        }}>
-          <Button 
-            label='Edit meal'
-            variant='primary'
-            onClick={handleEditMeal}
-            icon='pencil'
-          />
-          <Button 
-            label='Delete meal'
-            variant='secondary'
-            onClick={handleDeleteMeal}
-            icon='trash'
-          />
-        </SafeAreaView>
+          <RowContainer>
+            <DateTimeTitle>
+              Date & Time
+            </DateTimeTitle>
+            <MealDescription>
+              {`${format(meal?.date, 'dd/MM/yyyy')} at ${format(meal?.time, 'HH:mm')}`}
+            </MealDescription>
+          </RowContainer>
+          <View style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+            width: '100%',
+            paddingBottom: 20,
+            gap: 8
+          }}>
+            <Button 
+              label='Edit meal'
+              variant='primary'
+              onClick={handleEditMeal}
+              icon='pencil'
+            />
+            <Button 
+              label='Delete meal'
+              variant='secondary'
+              onClick={handleDeleteMeal}
+              icon='trash'
+            />
+          </View>
 
-      </Container>
+        </Body>
+      </Main>
     </>
   )
 }
