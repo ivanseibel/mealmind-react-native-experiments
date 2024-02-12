@@ -8,15 +8,16 @@ type Props = {
 
 type ButtonProps = Props & {
   isPressed: boolean
+  width?: '100%' | '48%' | 'auto' 
 }
 
 export const Container = styled(TouchableOpacity)<ButtonProps>`
-  ${({ theme, variant, isPressed }) => css`
+  ${({ theme, variant, isPressed, width }) => css`
     padding: 16px 24px;
     gap: 12px;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: ${width};
     flex-direction: row;
     border-radius: 6px;
     background-color: ${ variant === 'primary' ? (
