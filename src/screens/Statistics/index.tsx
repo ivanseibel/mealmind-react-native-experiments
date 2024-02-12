@@ -1,18 +1,38 @@
 import { View } from 'react-native';
-import { StatisticsHeaderContainer, StatisticsContainer, Title, DataContainer, DataItemContainer, DataItemValue, DataItemDescription } from './styles';
+import { Container, StatisticsContainer, Title, DataContainer, DataItemContainer, DataItemValue, DataItemDescription, BackContainer, BackIcon, Header } from './styles';
 import { StatisticHighlight } from '@components/StatisticHighlight';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export function Statistics() {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
+  const variant = 'negative';
+
   return (
     <>
-      <StatisticsHeaderContainer
-        variant='up'
+      <Container
+        variant={variant}
       >
-        <StatisticHighlight 
-          percentage={90.86}
-          variant='positiveBack'
-        />
-      </StatisticsHeaderContainer>
+        <Header>
+          <BackContainer
+            onPress={handleGoBack}
+          >
+            <BackIcon 
+              variant={variant}
+            />
+          </BackContainer>
+          <StatisticHighlight 
+            percentage={90.86}
+            variant={variant}
+            showHighlightIcon={false}
+          />
+        </Header>
+      </Container>
       <StatisticsContainer
         edges={['right', 'bottom', 'left']}
       >
@@ -40,7 +60,7 @@ export function Statistics() {
 
           <View style={{flex: 1, flexDirection: 'row', gap: 14}}>
             <DataItemContainer
-              variant='up'
+              variant='positive'
               width='half'
             >
               <DataItemValue>99</DataItemValue>
@@ -49,7 +69,7 @@ export function Statistics() {
             </DataItemDescription>
             </DataItemContainer>
             <DataItemContainer
-              variant='down'
+              variant='positive'
               width='half'
             >
               <DataItemValue>10</DataItemValue>
