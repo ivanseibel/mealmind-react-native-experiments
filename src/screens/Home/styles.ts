@@ -1,4 +1,3 @@
-import { SectionList } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -39,7 +38,7 @@ export const SectionHeaderTitle = styled.Text`
   `}
   line-height: 23px;
   width: 100%;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
   margin-bottom: 8px;
   margin-top: 32px;
 `;
