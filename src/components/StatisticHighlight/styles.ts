@@ -7,14 +7,15 @@ export type Props = {
 
 export const Container = styled.TouchableOpacity<Props>`
   width: 100%;
-  padding: ${({ variant }) => !variant.includes('Back') ? '20px 16px' : '0'};
+  padding: ${({ variant }) => !variant.includes('Back') ? '20px 16px' : '0 0 32px'};
   background-color: ${({ theme, variant }) => variant.includes('positive') ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
   gap: 2px;
   border-radius: 8px;
   position: relative;
+  height: ${({ variant }) => !variant.includes('Back') ? 'auto' : '100%'};
 `;
 
 export const HighLightIcon = styled(ArrowUpRight).attrs<Props>(({ theme, variant }) => ({
@@ -33,7 +34,6 @@ export const Percentage = styled.Text`
     font-size: ${theme.FONT_SIZE.XXL}px;
     line-height: 41.6px;
   `}
-
   text-align: center;
 `;
 
@@ -47,16 +47,4 @@ export const Subtitle = styled.Text`
   line-height: 18.2px;
   align-self: stretch;
   text-align: center;
-`;
-
-export const BackContainer = styled.TouchableOpacity`
-  width: 100%;
-  align-items: flex-start;
-  border-radius: 8px;
-`;
-
-export const BackIcon = styled(ArrowLeft).attrs<Props>(({ theme, variant }) => ({
-  color: variant === 'positiveBack' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
-  size: 24,
-}))`
 `;
