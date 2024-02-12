@@ -1,8 +1,8 @@
 import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
-import { BackContainer, BackIcon, Container, FullWidhtInputContainer, HalfWidhtInputContainer, HeaderContainer, Title, YesNoIndicator, YesNoSelectorContainer, YesNoText } from './styles';
+import { HeaderBackContainer, BackIcon, Body, FullWidhtInputContainer, HalfWidhtInputContainer, Header, HeaderContent, Main, Title, YesNoIndicator, YesNoSelectorContainer, YesNoText } from './styles';
 import { Input } from '@components/Input';
 import { InputLabel } from '@components/InputLabel';
-import { Platform, View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Button } from '@components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
@@ -34,22 +34,18 @@ export function MealForm() {
   }
 
   return (
-    <>
-      <Container
-        variant='header'
-      >
-        <HeaderContainer>
-          <BackContainer
+    <Main edges={['top', 'left', 'right']}>
+      <Header>
+        <HeaderContent>
+          <HeaderBackContainer
             onPress={handleGoBack}
           >
             <BackIcon />
-          </BackContainer>
+          </HeaderBackContainer>
           <Title>{operation === 'create' ? 'New meal' : 'Edit meal'}</Title>
-        </HeaderContainer>
-      </Container>
-      <Container
-        variant='body'
-      >
+        </HeaderContent>
+      </Header>
+      <Body edges={['bottom', 'left', 'right']}>
         <FullWidhtInputContainer>
           <InputLabel 
             title='Name'
@@ -126,7 +122,7 @@ export function MealForm() {
           </HalfWidhtInputContainer>
         </View>
 
-        <SafeAreaView style={{
+        <View style={{
           flex: 1,
           justifyContent: 'flex-end',
           width: '100%',
@@ -137,9 +133,9 @@ export function MealForm() {
             variant='primary'
             onClick={handleRecordMeal}
           />
-        </SafeAreaView>
+        </View>
 
-      </Container>
-    </>
+      </Body>
+    </Main>
   )
 }
