@@ -1,10 +1,9 @@
 import { ThemeProvider } from 'styled-components'
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { Loading } from '@components/Loading';
 import defaultTheme from './src/theme'
 import { useFonts } from 'expo-font'
 import { Routes } from '@routes/index';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
