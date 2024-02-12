@@ -1,9 +1,6 @@
 import { ArrowLeft } from 'phosphor-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { css } from 'styled-components/native';
-
-type ContainerProps = {
-  variant: 'header' | 'body';
-}
 
 type YesNoIndicatorProps = {
   color: 'green' | 'red';
@@ -13,26 +10,27 @@ type YesNoSelectorContainerProps = {
   highlighted: 'red' | 'green' | 'none';
 }
 
-export const Container = styled.View<ContainerProps>`
-  ${({ variant }) => variant === 'header' && css`
-    background-color: ${({ theme }) => theme.COLORS.GRAY_5};
-    height: 156px;
-    justify-content: center;
-    padding: 0 24px;
-  `}
-  ${({ variant }) => variant === 'body' && css`
-    background-color: ${({ theme }) => theme.COLORS.WHITE};
-    margin-top: -32px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    flex: 1;
-    padding: 40px 24px 0;
-    gap: 24px;
-  `}
+export const Main = styled(SafeAreaView)`
+  flex: 1;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_5};
+`;
+
+export const Header = styled.View`
+  background-color: ${({ theme }) => theme.COLORS.GRAY_5};
+  height: 120px;
+  justify-content: center;
+  padding: 0 24px;
   align-items: center;
 `;
 
-export const BackContainer = styled.TouchableOpacity`
+export const HeaderContent = styled.View`
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 32px;
+`;
+
+export const HeaderBackContainer = styled.TouchableOpacity`
   position: absolute;
   top: 0;
   left: 0;
@@ -45,6 +43,17 @@ export const BackIcon = styled(ArrowLeft).attrs(({ theme }) => ({
 }))`
 `;
 
+export const Body = styled(SafeAreaView)`
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
+  margin-top: -32px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  flex: 1;
+  padding: 40px 24px 0;
+  gap: 24px;
+  align-items: center;
+`;
+
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
@@ -52,12 +61,6 @@ export const Title = styled.Text`
   line-height: ${({ theme }) => theme.FONT_SIZE.LG * theme.LINE_HEIGHT.MULTIPLIER}px;
   text-align: center;
   width: 100%;
-`;
-
-export const HeaderContainer = styled.View`
-  position: relative;
-  width: 100%;
-  justify-content: center;
 `;
 
 export const FullWidhtInputContainer = styled.View`
