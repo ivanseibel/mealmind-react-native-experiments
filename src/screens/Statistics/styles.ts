@@ -1,17 +1,45 @@
+import { ArrowLeft } from 'phosphor-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
 type Props = {
-  variant: 'up' | 'down' | 'none';
+  variant: 'positive' | 'negative' | 'none';
   width?: 'full' | 'half';
 };
 
-export const StatisticsHeaderContainer = styled(SafeAreaView)<Props>`
+export const Container = styled(SafeAreaView)<Props>`
   height: 220px;
   align-items: center;
-  background-color: ${({ theme, variant }) => variant === 'up' ? theme.COLORS.GREEN_LIGHT : variant === 'down' ? theme.COLORS.RED_LIGHT : theme.COLORS.GRAY_6};
-  padding: 10px 24px 0;
+  justify-content: center;
+  padding-bottom: 32px;
+  background-color: ${({ theme, variant }) => variant === 'positive' 
+    ? theme.COLORS.GREEN_LIGHT 
+    : variant === 'negative' 
+      ? theme.COLORS.RED_LIGHT 
+      : theme.COLORS.GRAY_6};
 `;
+
+export const Header = styled.View`
+  position: relative;
+  width: 100%;
+`;
+
+export const BackContainer = styled.TouchableOpacity`
+  width: 100%;
+  align-items: flex-start;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 24px;
+  z-index: 2;
+`;
+
+export const BackIcon = styled(ArrowLeft).attrs<Props>(({ theme, variant }) => ({
+  color: variant === 'positive' ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
+  size: 24,
+}))`
+`;
+
 
 export const StatisticsContainer = styled(SafeAreaView)`
   flex: 1;
@@ -39,8 +67,8 @@ export const DataContainer = styled.View`
 
 export const DataItemContainer = styled.View<Props>`
   background-color: ${({ theme, variant }) => {
-    if (variant === 'up') return theme.COLORS.GREEN_LIGHT;
-    if (variant === 'down') return theme.COLORS.RED_LIGHT;
+    if (variant === 'positive') return theme.COLORS.GREEN_LIGHT;
+    if (variant === 'negative') return theme.COLORS.RED_LIGHT;
     return theme.COLORS.GRAY_6;
   }};
 
