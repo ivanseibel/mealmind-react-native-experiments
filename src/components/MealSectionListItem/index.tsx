@@ -1,17 +1,12 @@
+import { MealItem } from "src/@types/global";
 import { Container, Divider, MealStatus, MealTime, MealTitle } from "./styles";
+import { format } from "date-fns";
 
-type MealItem = {
-  id: string;
-  time: string;
-  title: string;
-  status: 'green' | 'red';
-}
-
-export function MealSectionListItem({ id, time, title, status }: MealItem) {
+export function MealSectionListItem({ id, time, date, title, status }: MealItem) {
   return (
     <Container>
       <MealTime>
-        {time}
+        {format(time, 'HH:mm')}
       </MealTime>
       <Divider />
       <MealTitle
