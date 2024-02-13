@@ -14,6 +14,7 @@ export declare global {
       Feedback: {
         variant?: 'positive' | 'negative';
       };
+      Settings: undefined;
     }
   }
 }
