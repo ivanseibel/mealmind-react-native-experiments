@@ -2,21 +2,24 @@ import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native
 import { HeaderBackContainer, BackIcon, Body, FullWidhtInputContainer, HalfWidhtInputContainer, Header, HeaderContent, Main, Title, YesNoIndicator, YesNoSelectorContainer, YesNoText } from './styles';
 import { Input } from '@components/Input';
 import { InputLabel } from '@components/InputLabel';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { Button } from '@components/Button';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { DateTimeInput } from '@components/DateTimeInput';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { addMeal } from '@storage/AddMeal';
+import { AppError } from '@utils/AppError';
 
 type RouteParams = {
   operation: 'create' | 'edit';
 }
 
 export function MealForm() {
-  const [withinDiet, setWithinDiet] = useState<true | false | undefined>(undefined);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
+  const [withinDiet, setWithinDiet] = useState<true | false | undefined>(undefined);
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
@@ -27,10 +30,28 @@ export function MealForm() {
     navigation.goBack();
   }
 
-  function handleRecordMeal() {
-    navigation.navigate('Feedback', {
-      variant: 'positive'
-    });
+  async function handleRecordMeal() {
+    try {
+      await addMeal({
+        name: name,
+        description,
+        date: date.toISOString(),
+        time: time.toISOString(),
+        status: withinDiet === true ? 'green' : withinDiet === false ? 'red' : undefined,
+      });
+
+      navigation.navigate('Feedback', {
+        variant: withinDiet === true ? 'positive' : 'negative',
+      });
+    } catch (error) {
+      console.log(error);
+
+      if (error instanceof AppError) {
+        return Alert.alert('Error', error.message);
+      }
+
+      Alert.alert('Error', 'An error occurred while trying to record the meal');
+    }
   }
 
   return (
@@ -50,7 +71,10 @@ export function MealForm() {
           <InputLabel 
             title='Name'
           />
-          <Input />
+          <Input 
+            value={name}
+            onChange={(e) => setName(e.nativeEvent.text)}
+          />
         </FullWidhtInputContainer>
         
         <FullWidhtInputContainer>
@@ -60,6 +84,8 @@ export function MealForm() {
           <Input 
             multiline
             numberOfLines={4}
+            value={description}
+            onChange={(e) => setDescription(e.nativeEvent.text)}
           />
         </FullWidhtInputContainer>
 
