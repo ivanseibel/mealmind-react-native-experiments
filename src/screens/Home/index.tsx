@@ -19,7 +19,7 @@ const MEALS: MealSection[] = [
     data: [
       {
         id: '1',
-        title: 'Breakfast',
+        name: 'Breakfast',
         time: '2021-09-21 08:00',
         date: '2021-09-21',
         status: 'red',
@@ -27,7 +27,7 @@ const MEALS: MealSection[] = [
       },
       {
         id: '2',
-        title: 'Lunch',
+        name: 'Lunch',
         status: 'green',
         time: '2021-09-21 12:00',
         date: '2021-09-21',
@@ -35,7 +35,7 @@ const MEALS: MealSection[] = [
       },
       {
         id: '3',
-        title: 'Dinner',
+        name: 'Dinner',
         status: 'red',
         time: '2021-09-21 18:00',
         date: '2021-09-21',
@@ -43,7 +43,7 @@ const MEALS: MealSection[] = [
       },
       {
         id: '4',
-        title: 'Snack Supper Breakfast Lunch Dinner',
+        name: 'Snack Supper Breakfast Lunch Dinner',
         status: 'green',
         time: '2021-09-21 20:00',
         date: '2021-09-21',
@@ -56,7 +56,7 @@ const MEALS: MealSection[] = [
     data: [
       {
         id: '1',
-        title: 'Breakfast',
+        name: 'Breakfast',
         time: '2021-09-20 08:00',
         date: '2021-09-20',
         status: 'red',
@@ -64,7 +64,7 @@ const MEALS: MealSection[] = [
       },
       {
         id: '2',
-        title: 'Lunch',
+        name: 'Lunch',
         status: 'green',
         time: '2021-09-20 12:00',
         date: '2021-09-20',
@@ -72,7 +72,7 @@ const MEALS: MealSection[] = [
       },
       {
         id: '3',
-        title: 'Dinner',
+        name: 'Dinner',
         status: 'red',
         time: '2021-09-20 18:00',
         date: '2021-09-20',
@@ -80,7 +80,7 @@ const MEALS: MealSection[] = [
       },
       {
         id: '4',
-        title: 'Snack Supper Breakfast Lunch Dinner',
+        name: 'Snack Supper Breakfast Lunch Dinner',
         status: 'green',
         time: '2021-09-20 20:00',
         date: '2021-09-20',
@@ -101,7 +101,7 @@ export function Home() {
       >
         <MealSectionListItem 
           id={item.id}
-          title={item.title}
+          name={item.name}
           description={item.description}
           status={item.status}
           time={item.time}
