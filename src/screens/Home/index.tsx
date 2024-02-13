@@ -14,10 +14,21 @@ import { Header } from '@components/Header';
 import { AppError } from '@utils/AppError';
 
 import { Container, MealsContainer, SectionHeaderTitle, Subtitle } from './styles';
+import { Statistics } from '@storage/StatisticsDTO';
+import { getStatistics } from '@storage/GetStatistics';
+import { set } from 'date-fns';
 
 export function Home() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMeals, setIsLoadingMeals] = useState(false);
+  const [isLoadingStatistics, setIsLoadingStatistics] = useState(false);
   const [meals, setMeals] = useState<Meal[]>([]);
+  const [statistics, setStatistics] = useState<Statistics>({
+    totalHealthyMeals: 0,
+    totalUnhealthyMeals: 0,
+    totalMeals: 0,
+    percentageHealthyMeals: 0,
+    generalStatus: 'negative',
+  });
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
@@ -41,7 +52,7 @@ export function Home() {
 
   async function fetchMeals() {
     try {
-      setIsLoading(true);
+      setIsLoadingMeals(true);
       const meals = await listMeals();
       setMeals(meals);
     } catch (error) {
@@ -51,12 +62,31 @@ export function Home() {
       
       Alert.alert('Error', 'Ooops, something went wrong.');
     } finally {
-      setIsLoading(false);
+      setIsLoadingMeals(false);
+    }
+  }
+
+  async function fetchStatistics() {
+    try {
+      setIsLoadingStatistics(true);
+      const statistics = await getStatistics();
+      setStatistics(statistics);
+    } catch (error) {
+      if (error instanceof AppError) {
+        console.log(error.message);
+        Alert.alert('Error', error.message);
+      } else {
+        console.log('An error occurred while trying to get statistics');
+        Alert.alert('Error', 'An error occurred while trying to get statistics');
+      }
+    } finally {
+      setIsLoadingStatistics(false);
     }
   }
 
   useFocusEffect(useCallback(() => {
     fetchMeals();
+    fetchStatistics();
   }, []));
 
   function handleOpenStatistics() {
@@ -94,10 +124,11 @@ export function Home() {
       <Container>
         <Header />
         <StatisticHighlight 
-          percentage={90.86}
+          percentage={statistics.percentageHealthyMeals}
           variant="negative"
           style={{ marginTop: 36 }}
           onPress={handleOpenStatistics}
+          isLoading={isLoadingStatistics}
         />
         <MealsContainer>
           <Subtitle>Meals</Subtitle>

@@ -1,2 +1,2 @@
 export const MEALS_COLLECTION = '@mealmind:meals'
-export const STORAGE_KEYS = '@mealmind:settings'
+export const SETTINGS_COLLECTION = '@mealmind:settings'

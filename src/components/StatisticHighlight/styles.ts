@@ -15,7 +15,8 @@ export const Container = styled.TouchableOpacity<Props>`
   gap: 2px;
   border-radius: 8px;
   position: relative;
-  height: ${({ variant }) => !variant.includes('Back') ? 'auto' : '100%'};
+  min-height: ${({ variant }) => !variant.includes('Back') ? 'auto' : '100%'};
+  max-height: ${({ variant }) => !variant.includes('Back') ? 'auto' : '100%'};
 `;
 
 export const HighLightIcon = styled(ArrowUpRight).attrs<Props>(({ theme, variant }) => ({

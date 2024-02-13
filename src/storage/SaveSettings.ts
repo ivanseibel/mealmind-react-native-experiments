@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { STORAGE_KEYS } from "./config";
+import { SETTINGS_COLLECTION } from "./config";
 import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 
@@ -20,7 +20,7 @@ function validateSettings(settings: Settings) {
 export async function saveSettings(settings: Settings) {
   try {
     validateSettings(settings);
-    await AsyncStorage.setItem(STORAGE_KEYS, JSON.stringify(settings));
+    await AsyncStorage.setItem(SETTINGS_COLLECTION, JSON.stringify(settings));
   } catch (error) {
     console.log(error);
     throw error;
