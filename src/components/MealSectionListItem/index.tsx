@@ -1,8 +1,8 @@
-import { MealItem } from "src/@types/global";
+import { Meal } from "@storage/MealStorageDTO";
 import { Container, Divider, MealStatus, MealTime, MealTitle } from "./styles";
 import { format } from "date-fns";
 
-export function MealSectionListItem({ id, time, date, title, status }: MealItem) {
+export function MealSectionListItem({ id, time, date, title, status }: Meal) {
   return (
     <Container>
       <MealTime>

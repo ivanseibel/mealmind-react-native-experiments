@@ -6,11 +6,11 @@ import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListDat
 import { MealSectionListItem } from '@components/MealSectionListItem';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MealItem } from 'src/@types/global';
+import { Meal } from '@storage/MealStorageDTO';
 
 type MealSection = {
   title: string;
-  data: MealItem[];
+  data: Meal[];
 }
 
 const MEALS: MealSection[] = [
@@ -93,7 +93,7 @@ const MEALS: MealSection[] = [
 export function Home() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
-  function renderMealItem({ item }: SectionListRenderItemInfo<MealItem>) {
+  function renderMealItem({ item }: SectionListRenderItemInfo<Meal>) {
     return (
       <TouchableOpacity
         activeOpacity={0.7}
@@ -110,7 +110,7 @@ export function Home() {
       </TouchableOpacity>
     )
   }
-  function renderMealSection(section: SectionListData<MealItem, DefaultSectionT>) {
+  function renderMealSection(section: SectionListData<Meal, DefaultSectionT>) {
     return (
       <SectionHeaderTitle>{section.title}</SectionHeaderTitle>
     )
