@@ -45,6 +45,7 @@ export function MealDetails() {
     <>
       {showDeleteDialog && (
         <DeleteMealDialog 
+          id={meal.id}
           isVisible={showDeleteDialog}
           onClose={() => setShowDeleteDialog(false)}
         />
