@@ -1,4 +1,4 @@
-export type MealItem = {
+export type Meal = {
   id: string;
   title: string;
   status: 'green' | 'red';

@@ -1,15 +1,18 @@
+import { View } from 'react-native';
 import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
-import { HeaderBackContainer, BackIcon, Body, HeaderContent, Title, RowContainer, MealTitle, MealDescription, DateTimeTitle, Main, Header } from './styles';
-import { Button } from '@components/Button';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MealItem } from 'src/@types/global';
 import { useMemo, useState } from 'react';
 import { format } from 'date-fns';
+
+import { Button } from '@components/Button';
 import { DeleteMealDialog } from '@components/DeleteMealDialog';
-import { View } from 'react-native';
+
+import { Meal } from '@storage/MealStorageDTO';
+
+import { HeaderBackContainer, BackIcon, Body, HeaderContent, Title, RowContainer, MealTitle, MealDescription, DateTimeTitle, Main, Header } from './styles';
 
 type RouteParams = {
-  meal: MealItem;
+  meal: Meal;
 }
 
 export function MealDetails() {
