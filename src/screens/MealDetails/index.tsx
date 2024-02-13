@@ -67,7 +67,7 @@ export function MealDetails() {
         <Body>
           <RowContainer>
             <MealTitle>
-              {meal?.title}
+              {meal?.name}
             </MealTitle>
             <MealDescription>
               {meal?.description}
