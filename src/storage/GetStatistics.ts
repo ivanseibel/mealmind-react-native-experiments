@@ -1,12 +1,19 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MEALS_COLLECTION } from "./config";
+import { MEALS_COLLECTION, SETTINGS_COLLECTION } from "./config";
 import { Meal } from "./MealStorageDTO";
+import { AppError } from "@utils/AppError";
+import { Settings } from "./SettingsStorageDTO";
+import { Statistics } from "./StatisticsDTO";
 
-const POSITIVE_THRESHOLD = 0.7;
-
-
-export async function GetStatistics() {
+export async function getStatistics() {
   try {
+    const settingsSerialized = await AsyncStorage.getItem(SETTINGS_COLLECTION);
+    if (!settingsSerialized) {
+      throw new AppError('Settings not found');
+    }
+
+    const settings = JSON.parse(settingsSerialized) as Settings;
+
     const keys = await AsyncStorage.getAllKeys();
     const meals: Meal[] = [];
 
@@ -22,8 +29,8 @@ export async function GetStatistics() {
     const totalHealthyMeals = meals.filter((meal) => meal.status === 'green').length
     const totalUnhealthyMeals = meals.filter((meal) => meal.status === 'red').length;
     const totalMeals = meals.length;
-    const percentageHealthyMeals = (totalHealthyMeals / totalMeals) * 100;
-    const generalStatus = percentageHealthyMeals > POSITIVE_THRESHOLD ? 'positive' : 'negative';
+    const percentageHealthyMeals = Math.round((totalHealthyMeals / totalMeals) * 100);
+    const generalStatus = percentageHealthyMeals > settings.percentage ? 'positive' : 'negative';
 
     return {
       totalHealthyMeals,
@@ -31,7 +38,7 @@ export async function GetStatistics() {
       totalMeals,
       percentageHealthyMeals,
       generalStatus
-    };
+    } as Statistics;
   } catch (error) {
     throw error;
   }

@@ -1,11 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { STORAGE_KEYS } from "./config";
+import { SETTINGS_COLLECTION } from "./config";
 import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 
 export async function getSettings() {
   try {
-    const serialized = await AsyncStorage.getItem(STORAGE_KEYS);
+    const serialized = await AsyncStorage.getItem(SETTINGS_COLLECTION);
 
     if (!serialized) {
       return null;
