@@ -1,4 +1,4 @@
-import { MealItem } from "./global";
+import { Meal } from "@storage/MealStorageDTO";
 
 export declare global {
   namespace ReactNavigation {
@@ -6,7 +6,7 @@ export declare global {
       Home: undefined;
       Statistics: undefined;
       MealDetails: {
-        meal: string;
+        meal: Meal;
       };
       MealForm: {
         operation: 'create' | 'edit';
