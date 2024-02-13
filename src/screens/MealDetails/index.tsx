@@ -79,7 +79,7 @@ export function MealDetails() {
               Date & Time
             </DateTimeTitle>
             <MealDescription>
-              {`${format(meal?.date, 'dd/MM/yyyy')} at ${format(meal?.time, 'HH:mm')}`}
+              {`${meal?.date} at ${meal?.time}`}
             </MealDescription>
           </RowContainer>
           <View style={{

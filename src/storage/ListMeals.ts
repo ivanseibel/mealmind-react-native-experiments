@@ -4,7 +4,7 @@ import { MEALS_COLLECTION } from "./config";
 import { AppError } from "@utils/AppError";
 
 
-export async function ListMeals() {
+export async function listMeals() {
   try {
     const keys = await AsyncStorage.getAllKeys();
     const meals: Meal[] = [];
