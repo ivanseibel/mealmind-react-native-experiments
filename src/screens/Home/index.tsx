@@ -1,97 +1,67 @@
 import { Header } from '@components/Header';
-import { Container, MealsContainer, NewContainer, SectionHeaderTitle, Subtitle } from './styles';
+import { Container, MealsContainer, SectionHeaderTitle, Subtitle } from './styles';
 import { StatisticHighlight } from '@components/StatisticHighlight';
 import { Button } from '@components/Button';
-import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListData, Touchable, TouchableOpacity } from 'react-native';
+import { SectionListRenderItemInfo, SectionList, DefaultSectionT, SectionListData, Touchable, TouchableOpacity, Alert } from 'react-native';
 import { MealSectionListItem } from '@components/MealSectionListItem';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { ParamListBase, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Meal } from '@storage/MealStorageDTO';
-
-type MealSection = {
-  title: string;
-  data: Meal[];
-}
-
-const MEALS: MealSection[] = [
-  {
-    title: '21.09.2021',
-    data: [
-      {
-        id: '1',
-        name: 'Breakfast',
-        time: '2021-09-21 08:00',
-        date: '2021-09-21',
-        status: 'red',
-        description: 'Toast, eggs, and coffee'
-      },
-      {
-        id: '2',
-        name: 'Lunch',
-        status: 'green',
-        time: '2021-09-21 12:00',
-        date: '2021-09-21',
-        description: 'Rice, beans, and chicken'
-      },
-      {
-        id: '3',
-        name: 'Dinner',
-        status: 'red',
-        time: '2021-09-21 18:00',
-        date: '2021-09-21',
-        description: 'Pasta, tomato sauce, and cheese'
-      },
-      {
-        id: '4',
-        name: 'Snack Supper Breakfast Lunch Dinner',
-        status: 'green',
-        time: '2021-09-21 20:00',
-        date: '2021-09-21',
-        description: 'Yogurt, granola, and honey'
-      },
-    ]
-  },
-  {
-    title: '20.09.2021',
-    data: [
-      {
-        id: '1',
-        name: 'Breakfast',
-        time: '2021-09-20 08:00',
-        date: '2021-09-20',
-        status: 'red',
-        description: 'Avocado toast and coffee'
-      },
-      {
-        id: '2',
-        name: 'Lunch',
-        status: 'green',
-        time: '2021-09-20 12:00',
-        date: '2021-09-20',
-        description: 'Stake, potatoes, and salad'
-      },
-      {
-        id: '3',
-        name: 'Dinner',
-        status: 'red',
-        time: '2021-09-20 18:00',
-        date: '2021-09-20',
-        description: 'Pizza and soda'
-      },
-      {
-        id: '4',
-        name: 'Snack Supper Breakfast Lunch Dinner',
-        status: 'green',
-        time: '2021-09-20 20:00',
-        date: '2021-09-20',
-        description: 'Fruit salad and yogurt'
-      },
-    ]
-  },
-]
+import { useCallback, useMemo, useState } from 'react';
+import { listMeals } from '@storage/ListMeals';
+import { AppError } from '@utils/AppError';
 
 export function Home() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [meals, setMeals] = useState<Meal[]>([]);
+
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
+  const listSectionData = useMemo(() => {
+    const sectionsMap: { [date: string]: Meal[] } = {};
+
+    meals.forEach(meal => {
+      if (!sectionsMap[meal.date]) {
+        sectionsMap[meal.date] = [];
+      }
+      sectionsMap[meal.date].push(meal);
+    });
+
+    const sections = Object.keys(sectionsMap).map(date => ({
+      title: date,
+      data: sectionsMap[date],
+    }));
+
+    return sections;
+}, [meals]);
+
+  async function fetchMeals() {
+    try {
+      setIsLoading(true);
+      const meals = await listMeals();
+      setMeals(meals);
+    } catch (error) {
+      if (error instanceof AppError) {
+        return Alert.alert('Error', error.message);
+      }
+      
+      Alert.alert('Error', 'Ooops, something went wrong.');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useFocusEffect(useCallback(() => {
+    fetchMeals();
+  }, []));
+
+  function handleOpenStatistics() {
+    navigation.navigate('Statistics');
+  }
+
+  function handleOpenMealForm() {
+    navigation.navigate('MealForm', { operation: 'edit' });
+  }
 
   function renderMealItem({ item }: SectionListRenderItemInfo<Meal>) {
     return (
@@ -116,14 +86,6 @@ export function Home() {
     )
   }
 
-  function handleOpenStatistics() {
-    navigation.navigate('Statistics');
-  }
-
-  function handleOpenMealForm() {
-    navigation.navigate('MealForm', { operation: 'edit' });
-  }
-
   return (
       <Container>
         <Header />
@@ -134,25 +96,23 @@ export function Home() {
           onPress={handleOpenStatistics}
         />
         <MealsContainer>
-          <NewContainer>
-            <Subtitle>Meals</Subtitle>
-            <Button
-              label='Add meal'
-              onClick={handleOpenMealForm}
-              variant='primary'
-              icon='plus'
-            />
+          <Subtitle>Meals</Subtitle>
+          <Button
+            label='Add meal'
+            onClick={handleOpenMealForm}
+            variant='primary'
+            icon='plus'
+          />
 
-            <SectionList 
-              style={{ width: '100%' }}
-              sections={MEALS}
-              keyExtractor={(item) => item.id }
-              renderItem={renderMealItem}
-              renderSectionHeader={({ section }) => renderMealSection(section)}
-              stickySectionHeadersEnabled={false}
-              showsVerticalScrollIndicator={false}
-            />
-          </NewContainer>
+          <SectionList 
+            style={{ width: '100%' }}
+            sections={listSectionData}
+            keyExtractor={(item) => item.id }
+            renderItem={renderMealItem}
+            renderSectionHeader={({ section }) => renderMealSection(section)}
+            stickySectionHeadersEnabled={false}
+            showsVerticalScrollIndicator={false}
+          />
         </MealsContainer>
       </Container>
   )

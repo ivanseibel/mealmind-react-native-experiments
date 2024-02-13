@@ -12,13 +12,8 @@ export const MealsContainer = styled.View`
   width: 100%;
   margin-top: 40px;
   flex: 1;
-`;
-
-export const NewContainer = styled.View`
-  width: 100%;
-  margin-bottom: 32px;
   gap: 8px;
-`
+`;
 
 export const Subtitle = styled.Text`
   ${({ theme }) => css`
