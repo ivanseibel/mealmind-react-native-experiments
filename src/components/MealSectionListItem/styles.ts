@@ -34,7 +34,7 @@ export const Divider = styled.View`
   `}
 `;
 
-export const MealTitle = styled.Text`
+export const MealName = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_2};
     font-family: ${theme.FONT_FAMILY.REGULAR};
