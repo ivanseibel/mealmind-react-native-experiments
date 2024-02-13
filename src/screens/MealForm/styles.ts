@@ -30,6 +30,15 @@ export const HeaderContent = styled.View`
   margin-bottom: 32px;
 `;
 
+export const Title = styled.Text`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
+  color: ${({ theme }) => theme.COLORS.GRAY_1};
+  line-height: ${({ theme }) => theme.FONT_SIZE.LG * theme.LINE_HEIGHT.MULTIPLIER}px;
+  text-align: center;
+  width: 100%;
+`;
+
 export const HeaderBackContainer = styled.TouchableOpacity`
   position: absolute;
   top: 0;
@@ -52,15 +61,6 @@ export const Body = styled(SafeAreaView)`
   padding: 40px 24px 0;
   gap: 24px;
   align-items: center;
-`;
-
-export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
-  color: ${({ theme }) => theme.COLORS.GRAY_1};
-  line-height: ${({ theme }) => theme.FONT_SIZE.LG * theme.LINE_HEIGHT.MULTIPLIER}px;
-  text-align: center;
-  width: 100%;
 `;
 
 export const FullWidhtInputContainer = styled.View`
