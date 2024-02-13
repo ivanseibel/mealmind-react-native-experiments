@@ -17,4 +17,8 @@ export const Container = styled(TextInput).attrs(({ theme }) => ({
   max-height: ${({ multiline }) => multiline ? 240 : 48}px;
   padding: 14px;
   border-radius: 8px;
+
+  ${({ multiline }) => multiline && css`
+    text-align-vertical: top;
+  `}
 `;
