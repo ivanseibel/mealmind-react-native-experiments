@@ -3,38 +3,43 @@ import { Meal } from "./MealStorageDTO";
 import { MEALS_COLLECTION } from "./config";
 import { AppError } from "@utils/AppError";
 
-type AddMealProps = Omit<Meal, 'id'>;
+type AddMealProps = Omit<Meal, 'id' | 'status'> & {
+  status?: 'green' | 'red' | undefined;
+}
 
-export async function AddMeal(meal: AddMealProps) {
-  function validate(meal: AddMealProps) {
-    if (!meal.title) {
-      throw new AppError('Title is required');
-    }
+function validate(meal: AddMealProps) {
+  console.log('Validating meal', meal);
 
-    if (!meal.status) {
-      throw new AppError('Status is required');
-    }
-
-    if (!meal.date) {
-      throw new AppError('Date is required');
-    }
-
-    if (!meal.time) {
-      throw new AppError('Time is required');
-    }
-
-    if (!meal.description) {
-      throw new AppError('Description is required');
-    }
+  if (!meal.name) {
+    throw new AppError('Name is required');
   }
 
+  if (!meal.description) {
+    throw new AppError('Description is required');
+  }
+  
+  if (!meal.date) {
+    throw new AppError('Date is required');
+  }
+  
+  if (!meal.time) {
+    throw new AppError('Time is required');
+  }
+  
+  if (!meal.status) {
+    throw new AppError('Status is required');
+  }
+}
+
+export async function addMeal(meal: AddMealProps) {
+
   try {
-    const newMeal: Meal = {
+    validate(meal);
+
+    const newMeal = {
       id: String(new Date().getTime()),
       ...meal,
     }
-
-    validate(meal); 
 
     await AsyncStorage.setItem(
       `${MEALS_COLLECTION}:${newMeal.id}`,
