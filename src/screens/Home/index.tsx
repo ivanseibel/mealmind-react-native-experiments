@@ -125,7 +125,7 @@ export function Home() {
         <Header />
         <StatisticHighlight 
           percentage={statistics.percentageHealthyMeals}
-          variant="negative"
+          variant={statistics.generalStatus}
           style={{ marginTop: 36 }}
           onPress={handleOpenStatistics}
           isLoading={isLoadingStatistics}
@@ -138,6 +138,12 @@ export function Home() {
             variant='primary'
             icon='plus'
           />
+
+          {meals.length === 0 && !isLoadingMeals && (
+            <Subtitle style={{ marginTop: 24 }}>
+              No meals found. Add your first meal to start tracking your diet.
+            </Subtitle>
+          )}
 
           <SectionList 
             style={{ width: '100%' }}

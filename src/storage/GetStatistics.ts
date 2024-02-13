@@ -5,11 +5,19 @@ import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 import { Statistics } from "./StatisticsDTO";
 
+const DEFAULT_STATISTICS: Statistics = {
+  totalHealthyMeals: 0,
+  totalUnhealthyMeals: 0,
+  totalMeals: 0,
+  percentageHealthyMeals: 0.00,
+  generalStatus: 'positive',
+};
+
 export async function getStatistics() {
   try {
     const settingsSerialized = await AsyncStorage.getItem(SETTINGS_COLLECTION);
     if (!settingsSerialized) {
-      throw new AppError('Settings not found');
+      return DEFAULT_STATISTICS;
     }
 
     const settings = JSON.parse(settingsSerialized) as Settings;
@@ -26,10 +34,14 @@ export async function getStatistics() {
       }
     }
 
+    if (!meals.length) {
+      return DEFAULT_STATISTICS;
+    }
+
     const totalHealthyMeals = meals.filter((meal) => meal.status === 'green').length
     const totalUnhealthyMeals = meals.filter((meal) => meal.status === 'red').length;
     const totalMeals = meals.length;
-    const percentageHealthyMeals = Math.round((totalHealthyMeals / totalMeals) * 100);
+    const percentageHealthyMeals = Math.round((totalHealthyMeals / totalMeals) * 10000) / 100;
     const generalStatus = percentageHealthyMeals > settings.percentage ? 'positive' : 'negative';
 
     return {
