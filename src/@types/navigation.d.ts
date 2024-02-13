@@ -6,7 +6,7 @@ export declare global {
       Home: undefined;
       Statistics: undefined;
       MealDetails: {
-        meal: string;
+        meal: Meal;
       };
       MealForm: {
         operation: 'create' | 'edit';
