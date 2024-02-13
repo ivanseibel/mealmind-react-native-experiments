@@ -9,6 +9,7 @@ import { DateTimeInput } from '@components/DateTimeInput';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { addMeal } from '@storage/AddMeal';
 import { AppError } from '@utils/AppError';
+import { format } from 'date-fns';
 
 type RouteParams = {
   operation: 'create' | 'edit';
@@ -35,8 +36,8 @@ export function MealForm() {
       await addMeal({
         name: name,
         description,
-        date: date.toISOString(),
-        time: time.toISOString(),
+        date: format(date, 'yyyy-MM-dd'),
+        time: format(time, 'HH:mm'),
         status: withinDiet === true ? 'green' : withinDiet === false ? 'red' : undefined,
       });
 
