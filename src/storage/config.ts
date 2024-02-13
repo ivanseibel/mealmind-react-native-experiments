@@ -1,2 +1,1 @@
-export const MEALS_COLLECTION = 'meals'
-export const STATISTICS_COLLECTION = 'statistics'
+export const MEALS_COLLECTION = '@mealmind:meals'
