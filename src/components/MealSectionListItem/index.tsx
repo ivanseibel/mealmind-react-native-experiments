@@ -1,20 +1,20 @@
 import { Meal } from "@storage/MealStorageDTO";
-import { Container, Divider, MealStatus, MealTime, MealTitle } from "./styles";
+import { Container, Divider, MealStatus, MealTime, MealName } from "./styles";
 import { format } from "date-fns";
 
-export function MealSectionListItem({ id, time, date, title, status }: Meal) {
+export function MealSectionListItem({ id, time, date, name, status }: Meal) {
   return (
     <Container>
       <MealTime>
         {format(time, 'HH:mm')}
       </MealTime>
       <Divider />
-      <MealTitle
+      <MealName
         numberOfLines={1}
         ellipsizeMode="tail"
       >
-        {title}
-      </MealTitle>
+        {name}
+      </MealName>
       <MealStatus status={status} />
     </Container>
   )
