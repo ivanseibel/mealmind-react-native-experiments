@@ -10,6 +10,7 @@ export declare global {
       };
       MealForm: {
         operation: 'create' | 'edit';
+        meal: Meal;
       };
       Feedback: {
         variant?: 'positive' | 'negative';
