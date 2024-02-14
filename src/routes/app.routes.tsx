@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Feedback } from "@screens/Feedback";
-import { Home } from "@screens/Home";
-import { MealDetails } from "@screens/MealDetails";
-import { MealForm } from "@screens/MealForm";
-import { Settings } from "@screens/Settings";
-import { Statistics } from "@screens/Statistics";
+import { HomeScreen } from "@screens/Home";
+import { MealDetailsScreen } from "@screens/MealDetails";
+import { MealFormScreen } from "@screens/MealForm";
+import { SettingsScreen } from "@screens/Settings";
+import { StatisticsScreen } from "@screens/Statistics";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -15,12 +15,12 @@ export function AppRoutes() {
         headerShown: false
       }}
     >
-      <Screen name="Home" component={Home} />
-      <Screen name="Statistics" component={Statistics} />
-      <Screen name="MealForm" component={MealForm} />
+      <Screen name="Home" component={HomeScreen} />
+      <Screen name="Statistics" component={StatisticsScreen} />
+      <Screen name="MealForm" component={MealFormScreen} />
       <Screen name="Feedback" component={Feedback} />
-      <Screen name="MealDetails" component={MealDetails} />
-      <Screen name="Settings" component={Settings} />
+      <Screen name="MealDetails" component={MealDetailsScreen} />
+      <Screen name="Settings" component={SettingsScreen} />
     </Navigator>
   );
 }

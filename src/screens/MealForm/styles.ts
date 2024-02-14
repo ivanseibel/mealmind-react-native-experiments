@@ -43,7 +43,7 @@ export const HeaderBackContainer = styled.TouchableOpacity`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 100;
 `;
 
 export const BackIcon = styled(ArrowLeft).attrs(({ theme }) => ({

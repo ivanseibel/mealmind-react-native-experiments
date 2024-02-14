@@ -6,6 +6,7 @@ export const DEFAULT_STATISTICS: Statistics = {
   totalMeals: 0,
   percentageHealthyMeals: 0.00,
   generalStatus: 'positive',
+  bestSequence: 0,
 };
 
 export const DEFAULT_SETTINGS = {
