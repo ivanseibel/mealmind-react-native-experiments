@@ -43,6 +43,14 @@ npx expo start
 
 To run the app on a simulator or a real device, follow the instructions in the Expo CLI.
 
+## Screenshots
+
+| ![Home](./screenshots/home.png) | ![Meal Details](./screenshots/meal-details.png) |
+|---------------------------------|-------------------------------------------------|
+| ![New Meal](./screenshots/new-meal.png) | ![Edit Meal](./screenshots/edit-meal.png) |
+| ![Delete Meal](./screenshots/delete-meal.png) | ![Statistics](./screenshots/statistics.png) |
+| ![We Are Sorry](./screenshots/we-are-sorry.png) | ![Keep It Up](./screenshots/keep-it-up.png) |
+
 ## Contributing
 
 Contributions to the MealMind project are welcome. Please ensure to follow the existing code structure and maintain the project's coding style.
