@@ -89,7 +89,7 @@ export function HomeScreen() {
   }
 
   function handleOpenMealForm() {
-    navigation.navigate('MealForm', { operation: 'edit' });
+    navigation.navigate('MealForm', { operation: 'create' });
   }
 
   function renderMealItem({ item }: SectionListRenderItemInfo<Meal>) {
