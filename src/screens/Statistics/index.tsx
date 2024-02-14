@@ -1,35 +1,63 @@
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { Container, StatisticsContainer, Title, DataContainer, DataItemContainer, DataItemValue, DataItemDescription, BackContainer, BackIcon, Header } from './styles';
 import { StatisticHighlight } from '@components/StatisticHighlight';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { ParamListBase, useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { DEFAULT_STATISTICS } from '@utils/defaults';
+import { useCallback, useState } from 'react';
+import { Statistics } from '@storage/StatisticsDTO';
+import { getStatistics } from '@storage/GetStatistics';
+import { AppError } from '@utils/AppError';
 
-export function Statistics() {
+export function StatisticsScreen() {
+  const [isLoadingStatistics, setIsLoadingStatistics] = useState(false);
+  const [statistics, setStatistics] = useState<Statistics>(DEFAULT_STATISTICS);
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   function handleGoBack() {
     navigation.goBack();
   }
 
-  const variant = 'negative';
+  async function fetchStatistics() {
+    try {
+      setIsLoadingStatistics(true);
+      const statistics = await getStatistics();
+      setStatistics(statistics);
+    } catch (error) {
+      if (error instanceof AppError) {
+        console.log(error.message);
+        Alert.alert('Error', error.message);
+      } else {
+        console.log('An error occurred while trying to get statistics');
+        Alert.alert('Error', 'An error occurred while trying to get statistics');
+      }
+    } finally {
+      setIsLoadingStatistics(false);
+    }
+  }
+
+  useFocusEffect(useCallback(() => {
+    fetchStatistics();
+  }, []));
 
   return (
     <>
       <Container
-        variant={variant}
+        variant={statistics.generalStatus}
       >
         <Header>
           <BackContainer
             onPress={handleGoBack}
           >
             <BackIcon 
-              variant={variant}
+              variant={statistics.generalStatus}
             />
           </BackContainer>
           <StatisticHighlight 
-            percentage={90.86}
-            variant={variant}
+            percentage={statistics.percentageHealthyMeals}
+            variant={statistics.generalStatus}
             showHighlightIcon={false}
+            isLoading={isLoadingStatistics}
           />
         </Header>
       </Container>
@@ -42,7 +70,7 @@ export function Statistics() {
             variant='none'
             width='full'
           >
-            <DataItemValue>22</DataItemValue>
+            <DataItemValue>{statistics.bestSequence}</DataItemValue>
             <DataItemDescription>
               best sequence of meals within the diet
             </DataItemDescription>
@@ -52,7 +80,7 @@ export function Statistics() {
             variant='none'
             width='full'
           >
-            <DataItemValue>109</DataItemValue>
+            <DataItemValue>{statistics.totalMeals}</DataItemValue>
             <DataItemDescription>
               meals recorded
             </DataItemDescription>
@@ -63,16 +91,16 @@ export function Statistics() {
               variant='positive'
               width='half'
             >
-              <DataItemValue>99</DataItemValue>
+              <DataItemValue>{statistics.totalHealthyMeals}</DataItemValue>
             <DataItemDescription>
               meals within the diet
             </DataItemDescription>
             </DataItemContainer>
             <DataItemContainer
-              variant='positive'
+              variant='negative'
               width='half'
             >
-              <DataItemValue>10</DataItemValue>
+              <DataItemValue>{statistics.totalUnhealthyMeals}</DataItemValue>
             <DataItemDescription>
               off-diet meals
             </DataItemDescription>
