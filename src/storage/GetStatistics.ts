@@ -38,7 +38,7 @@ export async function getStatistics() {
     const totalUnhealthyMeals = meals.filter((meal) => meal.status === 'red').length;
     const totalMeals = meals.length;
     const percentageHealthyMeals = Math.round((totalHealthyMeals / totalMeals) * 10000) / 100;
-    const generalStatus = percentageHealthyMeals > settings.percentage ? 'positive' : 'negative';
+    const generalStatus = percentageHealthyMeals >= settings.percentage ? 'positive' : 'negative';
 
     return {
       totalHealthyMeals,
