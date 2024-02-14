@@ -9,11 +9,14 @@ import { DEFAULT_SETTINGS, DEFAULT_STATISTICS } from "@utils/defaults";
 export async function getStatistics() {
   try {
     const settingsSerialized = await AsyncStorage.getItem(SETTINGS_COLLECTION);
+    
+    let settings = {} as Settings;
+    
     if (!settingsSerialized) {
-      return DEFAULT_STATISTICS;
+      settings = DEFAULT_SETTINGS;
+    } else {
+      settings = JSON.parse(settingsSerialized) as Settings;
     }
-
-    const settings = JSON.parse(settingsSerialized) as Settings;
 
     const keys = await AsyncStorage.getAllKeys();
     const meals: Meal[] = [];
