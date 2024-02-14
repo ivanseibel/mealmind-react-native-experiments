@@ -15,7 +15,7 @@ type RouteParams = {
   operation: 'create' | 'edit';
 }
 
-export function MealForm() {
+export function MealFormScreen() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState(new Date());

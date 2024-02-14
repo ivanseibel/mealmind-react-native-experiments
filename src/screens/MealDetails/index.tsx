@@ -15,7 +15,7 @@ type RouteParams = {
   meal: Meal;
 }
 
-export function MealDetails() {
+export function MealDetailsScreen() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();

@@ -18,7 +18,7 @@ import { Statistics } from '@storage/StatisticsDTO';
 import { getStatistics } from '@storage/GetStatistics';
 import { set } from 'date-fns';
 
-export function Home() {
+export function HomeScreen() {
   const [isLoadingMeals, setIsLoadingMeals] = useState(false);
   const [isLoadingStatistics, setIsLoadingStatistics] = useState(false);
   const [meals, setMeals] = useState<Meal[]>([]);
