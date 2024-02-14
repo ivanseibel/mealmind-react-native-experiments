@@ -17,18 +17,13 @@ import { Container, MealsContainer, SectionHeaderTitle, Subtitle } from './style
 import { Statistics } from '@storage/StatisticsDTO';
 import { getStatistics } from '@storage/GetStatistics';
 import { set } from 'date-fns';
+import { DEFAULT_STATISTICS } from '@utils/defaults';
 
 export function HomeScreen() {
   const [isLoadingMeals, setIsLoadingMeals] = useState(false);
   const [isLoadingStatistics, setIsLoadingStatistics] = useState(false);
   const [meals, setMeals] = useState<Meal[]>([]);
-  const [statistics, setStatistics] = useState<Statistics>({
-    totalHealthyMeals: 0,
-    totalUnhealthyMeals: 0,
-    totalMeals: 0,
-    percentageHealthyMeals: 0,
-    generalStatus: 'negative',
-  });
+  const [statistics, setStatistics] = useState<Statistics>(DEFAULT_STATISTICS);
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
