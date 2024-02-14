@@ -28,8 +28,9 @@ export function MealDetailsScreen() {
   }
 
   function handleEditMeal() {
-    navigation.navigate('Feedback', {
-      variant: 'positive'
+    navigation.navigate('MealForm', {
+      operation: 'edit',
+      meal,
     });
   }
 
