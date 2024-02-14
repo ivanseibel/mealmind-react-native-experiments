@@ -4,14 +4,7 @@ import { Meal } from "./MealStorageDTO";
 import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 import { Statistics } from "./StatisticsDTO";
-
-const DEFAULT_STATISTICS: Statistics = {
-  totalHealthyMeals: 0,
-  totalUnhealthyMeals: 0,
-  totalMeals: 0,
-  percentageHealthyMeals: 0.00,
-  generalStatus: 'positive',
-};
+import { DEFAULT_SETTINGS, DEFAULT_STATISTICS } from "@utils/defaults";
 
 export async function getStatistics() {
   try {
