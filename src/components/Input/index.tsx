@@ -1,4 +1,4 @@
-import { TextInput, TextInputProps } from "react-native";
+import { Keyboard, Platform, ScrollView, TextInput, TextInputProps, TouchableWithoutFeedback, View } from "react-native";
 import { Container } from "./styles";
 
 type Props = TextInputProps & {
@@ -8,9 +8,8 @@ type Props = TextInputProps & {
 export function Input({ inputRef, ...rest }: Props) {
   return (
     <Container
-      returnKeyType="done"
       { ...rest }
       ref={ inputRef }
     />
-  )
+  );
 }
