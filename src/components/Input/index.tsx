@@ -7,7 +7,8 @@ type Props = TextInputProps & {
 
 export function Input({ inputRef, ...rest }: Props) {
   return (
-    <Container 
+    <Container
+      returnKeyType="done"
       { ...rest }
       ref={ inputRef }
     />

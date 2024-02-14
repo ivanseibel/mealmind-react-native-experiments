@@ -4,23 +4,19 @@ import { Meal } from "./MealStorageDTO";
 import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 import { Statistics } from "./StatisticsDTO";
-
-const DEFAULT_STATISTICS: Statistics = {
-  totalHealthyMeals: 0,
-  totalUnhealthyMeals: 0,
-  totalMeals: 0,
-  percentageHealthyMeals: 0.00,
-  generalStatus: 'positive',
-};
+import { DEFAULT_SETTINGS, DEFAULT_STATISTICS } from "@utils/defaults";
 
 export async function getStatistics() {
   try {
     const settingsSerialized = await AsyncStorage.getItem(SETTINGS_COLLECTION);
+    
+    let settings = {} as Settings;
+    
     if (!settingsSerialized) {
-      return DEFAULT_STATISTICS;
+      settings = DEFAULT_SETTINGS;
+    } else {
+      settings = JSON.parse(settingsSerialized) as Settings;
     }
-
-    const settings = JSON.parse(settingsSerialized) as Settings;
 
     const keys = await AsyncStorage.getAllKeys();
     const meals: Meal[] = [];
@@ -42,7 +38,7 @@ export async function getStatistics() {
     const totalUnhealthyMeals = meals.filter((meal) => meal.status === 'red').length;
     const totalMeals = meals.length;
     const percentageHealthyMeals = Math.round((totalHealthyMeals / totalMeals) * 10000) / 100;
-    const generalStatus = percentageHealthyMeals > settings.percentage ? 'positive' : 'negative';
+    const generalStatus = percentageHealthyMeals >= settings.percentage ? 'positive' : 'negative';
 
     return {
       totalHealthyMeals,

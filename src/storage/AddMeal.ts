@@ -8,8 +8,6 @@ type AddMealProps = Omit<Meal, 'id' | 'status'> & {
 }
 
 function validate(meal: AddMealProps) {
-  console.log('Validating meal', meal);
-
   if (!meal.name) {
     throw new AppError('Name is required');
   }
