@@ -5,6 +5,28 @@ import { AppError } from "@utils/AppError";
 import { Settings } from "./SettingsStorageDTO";
 import { Statistics } from "./StatisticsDTO";
 import { DEFAULT_SETTINGS, DEFAULT_STATISTICS } from "@utils/defaults";
+import { listMeals } from "./ListMeals";
+
+const calculateBestMealSequence = (meals: Meal[]): Meal[] => {
+  let bestSequence: Meal[] = [];
+  let currentSequence: Meal[] = [];
+
+  for (const meal of meals) {
+    if (meal.status === 'green') {
+      // Add meal to current sequence
+      currentSequence.push(meal);
+      // Update the best sequence if current is longer
+      if (currentSequence.length > bestSequence.length) {
+        bestSequence = [...currentSequence];
+      }
+    } else {
+      // Reset current sequence if meal is not 'green'
+      currentSequence = [];
+    }
+  }
+
+  return bestSequence;
+};
 
 export async function getStatistics() {
   try {
@@ -18,21 +40,13 @@ export async function getStatistics() {
       settings = JSON.parse(settingsSerialized) as Settings;
     }
 
-    const keys = await AsyncStorage.getAllKeys();
-    const meals: Meal[] = [];
-
-    for (const key of keys) {
-      if (key.includes(MEALS_COLLECTION)) {
-        const meal = await AsyncStorage.getItem(key);
-        if (meal) {
-          meals.push(JSON.parse(meal));
-        }
-      }
-    }
+    const meals = await listMeals();
 
     if (!meals.length) {
       return DEFAULT_STATISTICS;
     }
+
+    const bestSequence = calculateBestMealSequence(meals)
 
     const totalHealthyMeals = meals.filter((meal) => meal.status === 'green').length
     const totalUnhealthyMeals = meals.filter((meal) => meal.status === 'red').length;
@@ -45,7 +59,8 @@ export async function getStatistics() {
       totalUnhealthyMeals,
       totalMeals,
       percentageHealthyMeals,
-      generalStatus
+      generalStatus,
+      bestSequence: bestSequence.length,
     } as Statistics;
   } catch (error) {
     throw error;
