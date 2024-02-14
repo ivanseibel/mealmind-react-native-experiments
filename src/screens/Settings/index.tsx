@@ -9,10 +9,11 @@ import { saveSettings } from "@storage/SaveSettings";
 import { AppError } from "@utils/AppError";
 import { Alert } from "react-native";
 import { getSettings } from "@storage/GetSettings";
+import { DismissKeyboardView } from "@components/DismissKeyboardView";
 
 const DEFAULT_PERCENTAGE = '90';
 
-export function Settings() {
+export function SettingsScreen() {
   const [percentage, setPercentage] = useState<string>(DEFAULT_PERCENTAGE);
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
@@ -58,38 +59,40 @@ export function Settings() {
   };
 
   return (
-    <Main edges={['top', 'left', 'right']}>
-      <Header>
-        <HeaderContent>
-          <HeaderBackContainer
-              onPress={handleGoBack}
-            >
-              <BackIcon />
-          </HeaderBackContainer>
-          <Title>Settings</Title>
-        </HeaderContent>
-      </Header>
+    <DismissKeyboardView>
+      <Main edges={['top', 'left', 'right']}>
+        <Header>
+          <HeaderContent>
+            <HeaderBackContainer
+                onPress={handleGoBack}
+              >
+                <BackIcon />
+            </HeaderBackContainer>
+            <Title>Settings</Title>
+          </HeaderContent>
+        </Header>
 
-      <Body edges={['bottom', 'left', 'right']}>
-        <FormContainer>
-          <InputLabel 
-            title="Target Diet Percentage"
-          />
-          <Input
-            keyboardType="numeric"
-            value={percentage}
-            onChangeText={setPercentage}
-            placeholder="Enter your target diet percentage"
-          />
-        </FormContainer>
-        <ButtonContainer>
-          <Button 
-            onClick={handleSave}
-            label="Save"
-            variant="primary"
-          />
-        </ButtonContainer>
-      </Body>
-    </Main>
+        <Body edges={['bottom', 'left', 'right']}>
+          <FormContainer>
+            <InputLabel 
+              title="Target Diet Percentage"
+            />
+            <Input
+              keyboardType="numeric"
+              value={percentage}
+              onChangeText={setPercentage}
+              placeholder="Enter your target diet percentage"
+            />
+          </FormContainer>
+          <ButtonContainer>
+            <Button 
+              onClick={handleSave}
+              label="Save"
+              variant="primary"
+            />
+          </ButtonContainer>
+        </Body>
+      </Main>
+    </DismissKeyboardView>
   );
 };
