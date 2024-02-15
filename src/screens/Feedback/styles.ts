@@ -14,6 +14,7 @@ export const Container = styled(SafeAreaView)`
   justify-content: center;
   align-items: center;
   gap: 40px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_7};
 `;
 
 export const TitleMessageContainer = styled.View`

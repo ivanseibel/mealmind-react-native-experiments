@@ -52,6 +52,7 @@ export function MealDetailsScreen() {
       )}
       <Main
         variant={variant}
+        edges={['top', 'left', 'right']}
       >
         <Header
           variant={variant}
@@ -65,7 +66,9 @@ export function MealDetailsScreen() {
             <Title>Meal</Title>
           </HeaderContent>
         </Header>
-        <Body>
+        <Body
+           edges={['bottom', 'left', 'right']}
+        >
           <RowContainer>
             <MealTitle>
               {meal?.name}
