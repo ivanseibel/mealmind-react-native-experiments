@@ -31,7 +31,7 @@ export function Feedback() {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   function handleClose() {
-    navigation.navigate('Home');
+    navigation.popToTop();
   }
 
   return (
