@@ -45,7 +45,7 @@ export const StatisticsContainer = styled(SafeAreaView)`
   flex: 1;
   align-items: center;
   padding-top: 34px;
-  background-color: ${({ theme }) => theme.COLORS.WHITE};
+  background-color: ${({ theme }) => theme.COLORS.GRAY_7};
   margin-top: -32px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

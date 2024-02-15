@@ -39,8 +39,8 @@ export const BackIcon = styled(ArrowLeft).attrs(({ theme }) => ({
 }))`
 `;
 
-export const Body = styled.View`
-  background-color: ${({ theme }) => theme.COLORS.WHITE};
+export const Body = styled(SafeAreaView)`
+  background-color: ${({ theme }) => theme.COLORS.GRAY_7};
   margin-top: -32px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

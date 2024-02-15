@@ -23,7 +23,7 @@ export const Container = styled(TouchableOpacity)<ButtonProps>`
     background-color: ${ variant === 'primary' ? (
       isPressed ? theme.COLORS.GRAY_2 : theme.COLORS.GRAY_1
     ) : (
-      isPressed ? theme.COLORS.GRAY_5 : theme.COLORS.WHITE
+      isPressed ? theme.COLORS.GRAY_5 : theme.COLORS.GRAY_7
     )};
     border: ${ `1px solid ${theme.COLORS.GRAY_1}`};
   `};
